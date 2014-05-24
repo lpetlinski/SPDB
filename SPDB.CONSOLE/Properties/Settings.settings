@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SPDB.CONSOLE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RouteLengthFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RouteLengthApprox.csv</Value>
+    </Setting>
+    <Setting Name="DataFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RTAData.csv</Value>
+    </Setting>
+    <Setting Name="ErrorFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RTAError.csv</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

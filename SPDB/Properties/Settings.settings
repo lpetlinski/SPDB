@@ -9,10 +9,10 @@
       <Value Profile="(Default)">spdb</Value>
     </Setting>
     <Setting Name="DbUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)">user</Value>
+      <Value Profile="(Default)">SPDB_USER</Value>
     </Setting>
     <Setting Name="DbPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">password</Value>
+      <Value Profile="(Default)">spdb_pass</Value>
     </Setting>
   </Settings>
 </SettingsFile>

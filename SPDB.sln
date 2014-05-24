@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPDB.DAL", "SPDB\SPDB.DAL.csproj", "{FF911B7F-A6E7-48F9-B73F-F92BB96F40D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPDB.CONSOLE", "SPDB.CONSOLE\SPDB.CONSOLE.csproj", "{3814A681-64AE-4B8B-8993-9671109836F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPDB.MODEL", "SPDB.MODEL\SPDB.MODEL.csproj", "{D81C0D0C-4518-4657-8CCD-C404731EAA99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{FF911B7F-A6E7-48F9-B73F-F92BB96F40D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF911B7F-A6E7-48F9-B73F-F92BB96F40D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF911B7F-A6E7-48F9-B73F-F92BB96F40D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3814A681-64AE-4B8B-8993-9671109836F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3814A681-64AE-4B8B-8993-9671109836F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3814A681-64AE-4B8B-8993-9671109836F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3814A681-64AE-4B8B-8993-9671109836F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D81C0D0C-4518-4657-8CCD-C404731EAA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81C0D0C-4518-4657-8CCD-C404731EAA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81C0D0C-4518-4657-8CCD-C404731EAA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81C0D0C-4518-4657-8CCD-C404731EAA99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

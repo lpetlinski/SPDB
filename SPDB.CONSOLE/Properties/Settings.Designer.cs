@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SPDB.DAL.Properties {
+namespace SPDB.CONSOLE.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,49 +25,37 @@ namespace SPDB.DAL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
-        public string DbServer {
+        [global::System.Configuration.DefaultSettingValueAttribute("RouteLengthApprox.csv")]
+        public string RouteLengthFile {
             get {
-                return ((string)(this["DbServer"]));
+                return ((string)(this["RouteLengthFile"]));
             }
             set {
-                this["DbServer"] = value;
+                this["RouteLengthFile"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("spdb")]
-        public string DbDatabase {
+        [global::System.Configuration.DefaultSettingValueAttribute("RTAData.csv")]
+        public string DataFile {
             get {
-                return ((string)(this["DbDatabase"]));
+                return ((string)(this["DataFile"]));
             }
             set {
-                this["DbDatabase"] = value;
+                this["DataFile"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SPDB_USER")]
-        public string DbUsername {
+        [global::System.Configuration.DefaultSettingValueAttribute("RTAError.csv")]
+        public string ErrorFile {
             get {
-                return ((string)(this["DbUsername"]));
+                return ((string)(this["ErrorFile"]));
             }
             set {
-                this["DbUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("spdb_pass")]
-        public string DbPassword {
-            get {
-                return ((string)(this["DbPassword"]));
-            }
-            set {
-                this["DbPassword"] = value;
+                this["ErrorFile"] = value;
             }
         }
     }
