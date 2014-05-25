@@ -41,7 +41,7 @@ namespace SPDB.DAL
             try
             {
                 this.connection.Open();
-                log.Debug("Connected to database");
+                log.Info("Connected to database");
                 return true;
             }
             catch (MySqlException exc)
@@ -56,6 +56,9 @@ namespace SPDB.DAL
                         log.Error("Invalid login or password. Exception " + exc.ToString());
                         //TODO invalid login or password
                         break;
+                    default:
+                        log.Error("Other error from db. Stack trace: " + exc.ToString());
+                        break;
                 }
                 return false;
             }
@@ -66,10 +69,10 @@ namespace SPDB.DAL
             try
             {
                 this.connection.Close();
-                log.Debug("Connection closed");
+                log.Info("Connection closed");
                 return true;
             }
-            catch(MySqlException exc)
+            catch (MySqlException exc)
             {
                 log.Error("Closing connection failed");
                 return false;
@@ -78,7 +81,7 @@ namespace SPDB.DAL
 
         protected bool ExecuteNonQuery(string query)
         {
-            return this.ExecuteNonQueries(new string[]{query});
+            return this.ExecuteNonQueries(new string[] { query });
         }
 
         protected bool ExecuteNonQueries(string[] queries)

@@ -1,8 +1,4 @@
-/SPDB.v11.suo
-/SPDB/bin
-/SPDB/obj
-/SPDB.CONSOLE/bin
-/SPDB.CONSOLE/obj
-/SPDB.MODEL/bin
-/SPDB.MODEL/obj
-/SPDB.CONSOLE/SPDB.CONSOLE.csproj.user
+**/bin
+**/obj
+**.csproj.user
+**.suo
