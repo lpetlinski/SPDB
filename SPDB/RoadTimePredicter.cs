@@ -36,8 +36,8 @@ namespace SPDB.DAL
                 try
                 {
                     var formattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    var query = @"select rp.number as number, sum(m.time_in_decisecond*(2-m.error)*((select MAX(DATEDIFF('" + formattedDate + @"', MEASURE_DATE))
-	                                from measure_day)-DATEDIFF('" + formattedDate + @"', md.MEASURE_DATE))) as sum_time, sum((2-m.error)*((select MAX(DATEDIFF('" + formattedDate + @"', MEASURE_DATE))
+                    var query = @"select rp.number as number, sum(m.time_in_decisecond*(2-m.error)*LOG(5.477, (select MAX(DATEDIFF('" + formattedDate + @"', MEASURE_DATE))
+	                                from measure_day)-DATEDIFF('" + formattedDate + @"', md.MEASURE_DATE))) as sum_time, sum((2-m.error)*LOG(5.477, (select MAX(DATEDIFF('" + formattedDate + @"', MEASURE_DATE))
 	                                from measure_day)-DATEDIFF('" + formattedDate + @"', md.MEASURE_DATE))) as weight
                                 from measure_day as md,
 	                                measure as m,
