@@ -98,7 +98,7 @@ namespace SPDB.DAL
                             command.ExecuteNonQuery();
                             log.Debug("Executed Query: " + query);
                         }
-                        log.Info("Commiting Database creation transaction");
+                        log.Info("Commiting transaction");
                         transaction.Commit();
                         log.Info("Commit succeded");
                     }
