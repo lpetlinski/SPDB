@@ -1,0 +1,6 @@
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\obj\Debug\Chart.dll
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\obj\Debug\Chart.pdb
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\bin\Debug\Chart.dll
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\bin\Debug\Chart.pdb
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\obj\Debug\Chart.Dialog.resources
+c:\users\przemyslawm\documents\visual studio 2012\Projects\Chart\Chart\obj\Debug\ChartDialog.csproj.GenerateResource.Cache

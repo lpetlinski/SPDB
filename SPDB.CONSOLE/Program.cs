@@ -19,7 +19,8 @@ namespace SPDB.CONSOLE
                 var creator = new DatabaseCreator();
                 creator.CreateDatabase();
                 var preparator = new DataPreparator();
-                preparator.PrepareData(@"E:\studia\mgr 2 sem\SPDB\Projekt");
+                //preparator.PrepareData(@"E:\studia\mgr 2 sem\SPDB\Projekt");
+                preparator.PrepareData(@"C:\others\spdb dane");
                 log.Info("FINISHED!");
             }
         }
