@@ -17,6 +17,8 @@ namespace SPDB.CONSOLE
         public static readonly CmdArguments INSERT_DATA = new CmdArguments("--insert");
         public static readonly CmdArguments ARGUMENT_PREFIX = new CmdArguments("--");
         public static readonly CmdArguments FOR_DATE_TIME = new CmdArguments("--fordatetime");
+        public static readonly CmdArguments FOR_CONTEST_START_AT = new CmdArguments("--forconteststartat");
+        public static readonly CmdArguments SAVE_FILE = new CmdArguments("--savefile");
         public static readonly CmdArguments HELP = new CmdArguments("--help");
 
         private CmdArguments(string name)
@@ -43,6 +45,8 @@ namespace SPDB.CONSOLE
                 System.Console.WriteLine("\t --create - Drops database if possible and creates a new one");
                 System.Console.WriteLine("\t --insert [directoryPath] - Inserts data from files associated with problem. If direcotryPath is provided, then files are searched for there, if not, then they are searhed for in assembly directory");
                 System.Console.WriteLine("\t --fordatetime [date time] - Predicts travel times for routes. If date and time is provided, then this date-time would be used, otherwise actual date-time is used. Date format: YYYY-MMM-DDD. Time format: HH:MM:SS");
+                System.Console.WriteLine("\t --forconteststartat [date time] - Predicts travel times for routes in intervals specified in contest, starting from date provided. If no date is provided, then actual time is used. Date formats are same as in --fordatetime");
+                System.Console.WriteLine("\t --savefile [filePath] - Saves data to given file in scv format. If No file path is provided, then it's saved as result.csv in actual location. Can be used with --fordatetime, --forconteststartat");
                 System.Console.WriteLine("\t --help - This page");
             }
             else
@@ -71,11 +75,27 @@ namespace SPDB.CONSOLE
                     {
                         date = DateTime.Parse(dateString);
                     }
-                    var result = predict.PredictAtDateTime(date);
-                    foreach (var a in result)
+                    var result = predict.PredictAtDateTimes(new List<DateTime>
                     {
-                        log.Info(a.RoadNumber.ToString() + ": " + a.TimeInDecisecond.ToString("###########.00000000"));
+                        date
+                    });
+                    log.Info("Result count: " + result.Count);
+                    TryToWriteResults(arguments, result);
+                }
+                if (arguments.ContainsKey(CmdArguments.FOR_CONTEST_START_AT.ToString()))
+                {
+                    var predict = new RoadTimePredicter();
+                    var dateString = arguments[CmdArguments.FOR_CONTEST_START_AT.ToString()].FirstOrDefault();
+                    var date = DateTime.Now;
+                    if (dateString != null)
+                    {
+                        date = DateTime.Parse(dateString);
                     }
+
+                    var dates = GenerateDatesForContest(date);
+                    var result = predict.PredictAtDateTimes(dates);
+                    log.Info("Result count: " + result.Count);
+                    TryToWriteResults(arguments, result);
                 }
             }
 #if DEBUG
@@ -115,6 +135,25 @@ namespace SPDB.CONSOLE
                         i++;
                     }
                 }
+                if (arguments[i] == CmdArguments.FOR_CONTEST_START_AT.ToString())
+                {
+                    result.Add(arguments[i], new List<string>());
+                    if (i + 2 < arguments.Length && !arguments[i + 1].StartsWith(CmdArguments.ARGUMENT_PREFIX.ToString()) && !arguments[i + 2].StartsWith(CmdArguments.ARGUMENT_PREFIX.ToString()))
+                    {
+                        result[arguments[i]].Add(ParseDate(arguments[i + 1], arguments[i + 2]).ToString(System.Globalization.CultureInfo.InvariantCulture));
+                        i++;
+                        i++;
+                    }
+                }
+                if (arguments[i] == CmdArguments.SAVE_FILE.ToString())
+                {
+                    result.Add(arguments[i], new List<string>());
+                    if (i + 1 < arguments.Length && !arguments[i + 1].StartsWith(CmdArguments.ARGUMENT_PREFIX.ToString()))
+                    {
+                        result[arguments[i]].Add(arguments[i + 1]);
+                        i++;
+                    }
+                }
                 if (arguments[i] == CmdArguments.HELP.ToString())
                 {
                     result.Add(arguments[i], null);
@@ -146,6 +185,33 @@ namespace SPDB.CONSOLE
             var second = int.Parse(time.Substring(6, 2));
 
             return new DateTime(year, month, day, hour, minute, second);
+        }
+
+        private static List<DateTime> GenerateDatesForContest(DateTime date)
+        {
+            var result = new List<DateTime>();
+            result.Add(date.AddMinutes(15));
+            result.Add(date.AddMinutes(30));
+            result.Add(date.AddMinutes(45));
+            result.Add(date.AddMinutes(60));
+            result.Add(date.AddMinutes(90));
+            result.Add(date.AddHours(2));
+            result.Add(date.AddHours(6));
+            result.Add(date.AddHours(12));
+            result.Add(date.AddHours(18));
+            result.Add(date.AddHours(24));
+
+            return result;
+        }
+
+        private static void TryToWriteResults(Dictionary<string, List<string>> arguments, List<PredictionResult> predictions)
+        {
+            if (arguments.ContainsKey(CmdArguments.SAVE_FILE.ToString()))
+            {
+                var file = arguments[CmdArguments.SAVE_FILE.ToString()].FirstOrDefault();
+                var saver = new DataSaver();
+                saver.TryToSaveData(predictions, file);
+            }
         }
     }
 }
