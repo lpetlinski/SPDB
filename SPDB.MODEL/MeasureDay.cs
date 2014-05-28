@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SPDB.MODEL
 {
+    /// <summary>
+    /// Model class for measure day.
+    /// </summary>
     public class MeasureDay
     {
         public int Id

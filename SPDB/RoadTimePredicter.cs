@@ -8,20 +8,32 @@ using System.Threading.Tasks;
 
 namespace SPDB.DAL
 {
+    /// <summary>
+    /// Class used as a result of prediction.
+    /// </summary>
     public class PredictionResult
     {
+        /// <summary>
+        /// Road number
+        /// </summary>
         public int RoadNumber
         {
             get;
             internal set;
         }
 
+        /// <summary>
+        /// Predicted time in Deciseconds
+        /// </summary>
         public float TimeInDecisecond
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Date for predictions.
+        /// </summary>
         public DateTime PredictionDate
         {
             get;
@@ -29,8 +41,16 @@ namespace SPDB.DAL
         }
     }
 
+    /// <summary>
+    /// Class used for predicting drive times.
+    /// </summary>
     public class RoadTimePredicter: BaseRepository
     {
+        /// <summary>
+        /// Predicts travel times for all road parts for each of given dates.
+        /// </summary>
+        /// <param name="dateTimes">List of dateTimes to predict travel times for</param>
+        /// <returns>List fo predictions for asked date-times.</returns>
         public List<PredictionResult> PredictAtDateTimes(List<DateTime> dateTimes)
         {
             var result = new List<PredictionResult>();

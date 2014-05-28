@@ -58,5 +58,17 @@ namespace SPDB.CONSOLE.Properties {
                 this["ErrorFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(";")]
+        public string SaveSeparator {
+            get {
+                return ((string)(this["SaveSeparator"]));
+            }
+            set {
+                this["SaveSeparator"] = value;
+            }
+        }
     }
 }

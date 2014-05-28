@@ -11,5 +11,8 @@
     <Setting Name="ErrorFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">RTAError.csv</Value>
     </Setting>
+    <Setting Name="SaveSeparator" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

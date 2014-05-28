@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SPDB.MODEL
 {
+    /// <summary>
+    /// Model for road parts.
+    /// </summary>
     public class RoadPart
     {
         public int Number

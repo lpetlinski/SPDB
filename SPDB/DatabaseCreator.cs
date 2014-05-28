@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace SPDB.DAL
 {
+    /// <summary>
+    /// Class for creating database tables.
+    /// </summary>
     public class DatabaseCreator : BaseRepository
     {
+        /// <summary>
+        /// Creates new tables used by application.
+        /// It drops tables, if they already exists.
+        /// </summary>
         public void CreateDatabase()
         {
             log.Info("Creating database started");

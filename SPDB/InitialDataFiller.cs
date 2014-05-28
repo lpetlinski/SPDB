@@ -8,8 +8,18 @@ using System.Threading.Tasks;
 
 namespace SPDB.DAL
 {
+    /// <summary>
+    /// Class used for fill database with data.
+    /// </summary>
     public class InitialDataFiller: BaseRepository
     {
+        /// <summary>
+        /// Fills database with data.
+        /// </summary>
+        /// <param name="roadParts">List of road parts to add to database.</param>
+        /// <param name="measureDays">List of measure days to add to database.</param>
+        /// <param name="measures">List of measures to add to database</param>
+        /// <returns>True on success.</returns>
         public bool FillDatabaseWithData(List<RoadPart> roadParts, List<MeasureDay> measureDays, List<Measure> measures)
         {
 
@@ -27,6 +37,11 @@ namespace SPDB.DAL
             return rpResult && mdResult && mdResult;
         }
 
+        /// <summary>
+        /// Insers road parts into database.
+        /// </summary>
+        /// <param name="roadParts">Road parts to add to database.</param>
+        /// <returns>True on success.</returns>
         private bool InsertRoadParts(List<RoadPart> roadParts)
         {
             log.Info("Starting: fill road data...");
@@ -46,6 +61,11 @@ namespace SPDB.DAL
             return result;
         }
 
+        /// <summary>
+        /// Inserts measure days into database.
+        /// </summary>
+        /// <param name="measureDays">Measure days to add to database.</param>
+        /// <returns>True on success.</returns>
         private bool InsertMeasureDays(List<MeasureDay> measureDays)
         {
             log.Info("Starting: fill measure days data...");
@@ -66,6 +86,16 @@ namespace SPDB.DAL
             return result;
         }
 
+        /// <summary>
+        /// Inserts measures into database.
+        /// 
+        /// NOTE: There were problem to insert all this data to database in one sql, beacuse of timeout 9there are more than 5M rows to add).
+        /// Because of that, data is inserted in parts of 100k.
+        /// Also to speed everything up, data is first inserted into file and then read from it into database by bulk load.
+        /// Also woth to notice, that bulk load with 5M dat also result in timeout :).
+        /// </summary>
+        /// <param name="measures">Measures to add.</param>
+        /// <returns>True on success</returns>
         private bool InsertMeasures(List<Measure> measures)
         {
             log.Info("Starting: fill measure data...");

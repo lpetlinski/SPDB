@@ -9,10 +9,18 @@ using System.Threading.Tasks;
 
 namespace SPDB.CONSOLE
 {
+    /// <summary>
+    /// Class for preparing and saving data from file to database.
+    /// </summary>
     public class DataPreparator
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        /// <summary>
+        /// Prepares data from files, and inserts them into database.
+        /// </summary>
+        /// <param name="directory">Directoty, where files are located.</param>
+        /// <returns>True if everything finished fine.</returns>
         public bool PrepareData(string directory)
         {
             log.Info("Data preparation started");
@@ -37,6 +45,11 @@ namespace SPDB.CONSOLE
             return true;
         }
 
+        /// <summary>
+        /// Loads road parts from file with routes and lenghts.
+        /// </summary>
+        /// <param name="directory">Direcotry where file is located.</param>
+        /// <returns>List of red road parts.</returns>
         private List<RoadPart> LoadRoadParts(string directory)
         {
             log.Info("Starting: loading road parts...");
@@ -57,6 +70,13 @@ namespace SPDB.CONSOLE
             return result;
         }
 
+        /// <summary>
+        /// Loads measures and dates data from data file with those.
+        /// </summary>
+        /// <param name="directory">Directory where file is located.</param>
+        /// <param name="roadParts">List of road parts.</param>
+        /// <param name="measureDays">List of measure days, which will be filled.</param>
+        /// <param name="measures">List of measures, which will be filled.</param>
         private void LoadMeasuresAndDays(string directory, List<RoadPart> roadParts, List<MeasureDay> measureDays, List<Measure> measures)
         {
             log.Info("Starting: loading measures and days...");
@@ -92,6 +112,11 @@ namespace SPDB.CONSOLE
             log.Info("Finished: loading measures and days.");
         }
 
+        /// <summary>
+        /// Loads error values from error file, for each measure indicating, how many loops where functional at time of reading.
+        /// </summary>
+        /// <param name="directory">Directory where file is located.</param>
+        /// <param name="measures">List of measures to fill error data to.</param>
         private void LoadErrorValues(string directory, List<Measure> measures)
         {
             log.Info("Starting: loading error values...");
@@ -113,6 +138,11 @@ namespace SPDB.CONSOLE
             log.Info("Finished: loading error values.");
         }
 
+        /// <summary>
+        /// Parses date from date and time format used in files.
+        /// </summary>
+        /// <param name="dateWithTime">Date with time to parse.</param>
+        /// <returns>Parsed dateTime.</returns>
         private DateTime ParseDate(string dateWithTime)
         {
             var limiterPos = dateWithTime.IndexOf('-');
@@ -131,6 +161,11 @@ namespace SPDB.CONSOLE
             return new DateTime(year, month, day, hour, minute, 0);
         }
 
+        /// <summary>
+        /// Checks whether files which will be red exists in directory.
+        /// </summary>
+        /// <param name="directory">Directory to check.</param>
+        /// <returns>True if all files exists. False otherwise.</returns>
         private bool CheckFilesExistence(string directory)
         {
             log.Info("Starting: checking file existence...");

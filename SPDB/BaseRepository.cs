@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace SPDB.DAL
 {
+    /// <summary>
+    /// Base repository to be base class for every repository class.
+    /// </summary>
     public abstract class BaseRepository
     {
         private MySqlConnection connection;
 
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public MySqlConnection Connection
+        protected MySqlConnection Connection
         {
             get
             {
@@ -22,6 +25,9 @@ namespace SPDB.DAL
             }
         }
 
+        /// <summary>
+        /// Creates new repository, and creates connection string to database.
+        /// </summary>
         public BaseRepository()
         {
             var connectionString = new StringBuilder();
@@ -36,6 +42,10 @@ namespace SPDB.DAL
             this.connection = new MySqlConnection(connectionString.ToString());
         }
 
+        /// <summary>
+        /// Opens connection to database.
+        /// </summary>
+        /// <returns>True if everything went ok.</returns>
         protected bool OpenConnection()
         {
             try
@@ -64,6 +74,10 @@ namespace SPDB.DAL
             }
         }
 
+        /// <summary>
+        /// Closes database connection.
+        /// </summary>
+        /// <returns>True if connection was closed successfully.</returns>
         protected bool CloseConnection()
         {
             try
@@ -79,11 +93,21 @@ namespace SPDB.DAL
             }
         }
 
+        /// <summary>
+        /// Executes given non query.
+        /// </summary>
+        /// <param name="query">Query to execute.</param>
+        /// <returns>True on success.</returns>
         protected bool ExecuteNonQuery(string query)
         {
             return this.ExecuteNonQueries(new string[] { query });
         }
 
+        /// <summary>
+        /// Executes array of queries in one transaction.
+        /// </summary>
+        /// <param name="queries">Queries to execute</param>
+        /// <returns>True on success.</returns>
         protected bool ExecuteNonQueries(string[] queries)
         {
             var result = true;
